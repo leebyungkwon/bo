@@ -1,0 +1,71 @@
+
+server:
+  port: 8080
+  servlet:
+    session:
+      tracking-modes:
+      - cookie
+      timeout: 30m
+      cookie:
+        name: K_IDF
+        http-only: true
+  tomcat:
+    max-swallow-size: 1
+    additional-tld-skip-patterns: "jaxb-*.jar"
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: local
+  devtools:
+    livereload:
+      enabled: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+      
+mybatis:
+  type-aliases-package: com.sys.bo.*.*.entity
+  mapper-locations: classpath:mapper/**/*-sql.xml
+  configuration:
+    lazyLoadingEnabled: true
+    aggressiveLazyLoading: false
+    mapUnderscoreToCamelCase: true
+
+upload:
+  filePath: D:\upload    
+---
+spring:
+  profiles: local
+  datasource: 
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl
+    username: system
+    password: 1234
+  jpa:
+    properties:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+        format_sql: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    hibernate:
+      ddl-auto: none
+      
+logging:
+  level:
+    org.springframework: error
+    #com.skm.sso: info
+    #worg.hibernate.type: info
+    jdbc.audit: off
+    jdbc.connection: off
+    jdbc.resultset: off
+    jdbc.sqlonly: error
