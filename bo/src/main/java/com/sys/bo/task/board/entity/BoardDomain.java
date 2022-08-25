@@ -3,7 +3,7 @@ package com.sys.bo.task.board.entity;
 
 import org.apache.ibatis.type.Alias;
 
-import com.sys.bo.common.entity.BaseDomain;
+import com.sys.bo.common.domain.BaseDomain;
 import com.sys.bo.util.excel.ExcelColumn;
 
 import lombok.Data;

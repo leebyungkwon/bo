@@ -14,8 +14,21 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 	public LoginSuccessHandler(String defaultTargetUrl) {
         setDefaultTargetUrl(defaultTargetUrl);
     }
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, 
+
+
+
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
     	Authentication authentication) throws ServletException, IOException {
+
+
+    	System.out.println("################");
+    	System.out.println("################");
+    	System.out.println("################");
+    	System.out.println("################");
+    	System.out.println("################");
+    	System.out.println("################");
+    	System.out.println("################");
+
         HttpSession session = request.getSession();
         if (session != null) {
             String redirectUrl = (String) session.getAttribute("prevPage");

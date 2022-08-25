@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.bo.task.login.repository.MemberRoleRepository">
+
+    <select id="getMemberRoles" parameterType="string" resultType="memberRole">
+	    select ROLE
+	    from OSMDBA.ADMIN_ROLE
+	    where ADMIN_ID = #{sysopid}
+    </select>
+
+</mapper>

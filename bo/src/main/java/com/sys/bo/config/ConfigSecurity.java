@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -27,13 +27,33 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 @AllArgsConstructor
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
-    
+
 	@Autowired private LoginService loginService;
+
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    	return NoOpPasswordEncoder.getInstance();
+        //return new BCryptPasswordEncoder();
     }
+
+
+    /*
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Pbkdf2PasswordEncoder();
+    }
+
+    @Bean
+    public PasswordEncoder delegatingPasswordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    */
+
 
     @Override
     public void configure(WebSecurity web) throws Exception
@@ -52,24 +72,20 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 			.anyRequest().authenticated();
 
 		http.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl("/j_spring_security")
-			.usernameParameter("email")
-			.passwordParameter("password")
-			.successHandler(successHandler()).failureUrl("/login").permitAll();
+		.loginPage("/login").permitAll()
+		.loginProcessingUrl("/j_spring_security")
+		.usernameParameter("memberId")
+		.passwordParameter("password")
+		//.failureHandler(failurHandler())
+		.successHandler(successHandler()).permitAll()
+		.failureHandler(failurHandler()).permitAll();
 
-		http.logout()
+		http.logout().permitAll()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/login")
 			.invalidateHttpSession(true);
-		
+
 		http.exceptionHandling().accessDeniedPage("/denied");
-		
-		http.sessionManagement().invalidSessionUrl("/login");
-	    http.sessionManagement().maximumSessions(1);
-	    http.sessionManagement().invalidSessionUrl("/login");
-	    http.sessionManagement().sessionFixation().migrateSession();
-	    
 		http.csrf().disable();
     }
 
@@ -77,17 +93,17 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(loginService);
 	}
-	
+
 	public AuthenticationSuccessHandler successHandler() {
 		return new LoginSuccessHandler("/bo/main");
 	}
 	public AuthenticationFailureHandler failurHandler() {
 		return new LoginFailurHandler();
 	}
-	
+
 	@Bean
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 	    return new HttpSessionEventPublisher();
 	}
-	
+
 }

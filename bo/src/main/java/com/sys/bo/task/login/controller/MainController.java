@@ -12,11 +12,14 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping(value="/bo/main")
 public class MainController {
-	
+
 	//@Autowired private CommonService commonService;
-	
+
 	@GetMapping(value="")
 	public String main() {
+
+		System.out.println("######로그인 성공########");
+
 		return CosntPage.BoMainPage+"main";
 	}
 
@@ -24,7 +27,7 @@ public class MainController {
 	public String getVer(Long verId) {
 		//VersionEntity versionDomain = new VersionEntity();
 		//versionDomain.setVerId(verId);
-		
+
 		//commonService.getVer(versionDomain);
 		return CosntPage.BoMainPage+"main";
 	}
