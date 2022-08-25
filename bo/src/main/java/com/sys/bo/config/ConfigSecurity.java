@@ -1,5 +1,6 @@
 package com.sys.bo.config;
 
+import com.sys.bo.config.passwordencoder.SHA512PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,11 +34,17 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-    	return NoOpPasswordEncoder.getInstance();
-        //return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//    	return NoOpPasswordEncoder.getInstance();
+//        //return new BCryptPasswordEncoder();
+//    }
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new SHA512PasswordEncoder();
+		//return new BCryptPasswordEncoder();
+	}
 
 
     /*
