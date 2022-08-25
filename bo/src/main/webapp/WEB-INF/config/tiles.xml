@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-   <!-- main -->
+   <!-- main
    <definition name="main-layout" template="/WEB-INF/layout/default-layout.jsp">
        <put-attribute name="js"		  value="/WEB-INF/layout/default/js.jsp" />
        <put-attribute name="css"	  value="/WEB-INF/layout/default/css.jsp" />
@@ -14,6 +14,24 @@
        <put-attribute name="left"     value="/WEB-INF/layout/default/left.jsp" />
        <put-attribute name="body"	  value="" />
        <put-attribute name="footer"   value="/WEB-INF/layout/default/footer.jsp" />
+   </definition>
+   
+   <definition name="bo/*" extends="main-layout">
+       <put-attribute name="body" value="/WEB-INF/views/bo/{1}.jsp" />
+   </definition>
+   
+    -->
+
+   <!-- main -->
+   <definition name="main-layout" template="/WEB-INF/layout/_a-layout.jsp">
+       <put-attribute name="js"		  value="/WEB-INF/layout/_a/js.jsp" />
+       <put-attribute name="css"	  value="/WEB-INF/layout/_a/css.jsp" />
+       <put-attribute name="head"     value="/WEB-INF/layout/_a/head.jsp" />
+       <put-attribute name="header"   value="/WEB-INF/layout/_a/header.jsp" />
+       <put-attribute name="category" value="/WEB-INF/layout/_a/category.jsp" />
+       <put-attribute name="left"     value="/WEB-INF/layout/_a/left.jsp" />
+       <put-attribute name="body"	  value="" />
+       <put-attribute name="footer"   value="/WEB-INF/layout/_a/footer.jsp" />
    </definition>
    
    <definition name="bo/*" extends="main-layout">
