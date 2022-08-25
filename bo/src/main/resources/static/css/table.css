@@ -68,13 +68,13 @@
     margin-top: 5px;
     display: block;
 }
-.custom-pagination .pagination-previous {
+.custom-pagination .pagination-prev {
     top: 50%;
     left: 0;
     margin: -11px 10px 0;
     cursor:pointer;
 }
-.custom-pagination .pagination-next, .custom-pagination .pagination-previous {
+.custom-pagination .pagination-next, .custom-pagination .pagination-prev {
     display: inline-block;
     width: 22px;
     margin: 0 10px;
@@ -82,7 +82,7 @@
     vertical-align: top;
     cursor:pointer;
 }
-.custom-pagination .pagination-next a, .custom-pagination .pagination-previous a {
+.custom-pagination .pagination-next a, .custom-pagination .pagination-prev a {
     vertical-align: top;
 }
 .custom-pagination .num a {

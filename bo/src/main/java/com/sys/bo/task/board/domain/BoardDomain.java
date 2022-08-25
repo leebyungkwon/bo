@@ -1,4 +1,4 @@
-package com.sys.bo.task.board.entity;
+package com.sys.bo.task.board.domain;
 
 
 import org.apache.ibatis.type.Alias;

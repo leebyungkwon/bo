@@ -43,7 +43,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	
 	
-	implementation fileTree(dir: '/libs', include: ['*.jar'])
+	implementation fileTree(dir: rootDir.toString() + '/libs', include: ['*.jar'])
 	
 	
 }

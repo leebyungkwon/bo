@@ -318,6 +318,7 @@ let GRID = {
 
         if (this.pageCnt > 1) {
             if (1 < current) {
+				s_tag += '<span  class="pagination-first"><a href="javascript:void(0)" class=""><<</a></span>';
                 s_tag += '<span  class="pagination-prev"><a href="javascript:void(0)" class=""><</a></span>';
             }
             for (let i = start; i <= end; i++) {
@@ -325,6 +326,7 @@ let GRID = {
             }
             if (this.pageCnt > current) {
                 s_tag += '<span  class="pagination-next"><a href="javascript:void(0)" class="">></a></span>';
+                s_tag += '<span  class="pagination-last"><a href="javascript:void(0)" class="">>></a></span>';
             }
         } else {
             s_tag += '<span class="num num1"><a href="javascript:void(0)" class="page_num">1</a></span>';

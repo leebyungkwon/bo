@@ -9,13 +9,14 @@
 			    	</span>
 			    	<ul>
 			    		<li class="h3">이병권</li>
-			    		<li class="h4">일룸 관리자</li>
+			    		<li class="h4">오설록 관리자</li>
 			    	</ul>
 			    </div>
 			</section>
 			<section class="k_menu">
 			    <h4>시스템관리</h4>
 			    <ul class="k_menu_2">
+			       <li id="m_m0"><a data-mid="m0" data-url="/bo/system/templete/list">예제</a></li>
 			       <li id="m_m5"><a data-mid="m5" data-url="/bo/system/code/list">코드관리</a></li>
 			    </ul>
 			    <h4>상품</h4>

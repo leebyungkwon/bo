@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.bo.task.system.mapper.CodeMapper">
+
+	<select id="selectMstCodeList" parameterType="codeMst" resultType="codeMst">
+		<include refid="common.pageTop"/>
+		SELECT 
+			CD_MST.*																	
+		FROM CD_MST
+		<where>
+		    <if test="cdMstNo != 0">
+		    	CD_MST_NO = #{cdMstNo}
+		    </if>
+	    </where>
+		<include refid="common.pageBottom"/>
+	</select>
+
+	<insert id="saveMstCode" parameterType="codeMst">
+		MERGE INTO CD_MST
+		USING dual ON (CD_MST_NO = #{cdMstNo})
+		WHEN MATCHED THEN
+			UPDATE SET
+				CD_MST_NM = #{cdMstNm},
+				CD_MST_CD = #{cdMstCd},
+				CD_MST_DESC = #{cdMstDesc},
+				USE_YN = #{useYn},
+				UPD_DT = CURRENT_TIMESTAMP
+		WHEN NOT MATCHED THEN
+			INSERT	(CD_MST_NO, CD_MST_NM, CD_MST_CD, CD_MST_DESC, USE_YN, REG_DT, UPD_DT)
+			VALUES	(seq_cd_mst.nextval, #{cdMstNm}, #{cdMstCd}, #{cdMstDesc}, #{useYn}, CURRENT_TIMESTAMP , CURRENT_TIMESTAMP )
+	</insert>
+</mapper> 

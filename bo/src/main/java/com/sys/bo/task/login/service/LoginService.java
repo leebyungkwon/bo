@@ -12,17 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sys.bo.task.login.domain.MemberDomain;
 import com.sys.bo.task.login.domain.MemberRoleDomain;
-import com.sys.bo.task.login.repository.MemberRepository;
-import com.sys.bo.task.login.repository.MemberRoleRepository;
+import com.sys.bo.task.login.mapper.MemberMapper;
+import com.sys.bo.task.login.mapper.MemberRoleMapper;
 
 @Service
 public class LoginService implements UserDetailsService {
 
 	@Autowired
-	private MemberRepository memberRepository;
+	private MemberMapper memberRepository;
 
 	@Autowired
-	private MemberRoleRepository memberRoleRepository;
+	private MemberRoleMapper memberRoleRepository;
 
 
     @Transactional

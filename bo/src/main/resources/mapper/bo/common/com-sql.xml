@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="common">
+    <sql id="pageTop">
+		SELECT * 
+		    FROM (
+					SELECT COUNT(*) OVER () totalCnt, a.*, ROWNUM as rnum 
+		      	    FROM (
+    </sql>
     <sql id="pageBottom">
+	        ) a
+        )    
+        WHERE rnum <![CDATA[>=]]> 
+        	<if test="page == 0"> 1 </if>
+        	<if test="page > 0"> (${page}*${size})+1 </if>
+          and rnum <![CDATA[<=]]> (${page}+1)*${size}    
 	    <!-- common.pageBottom -->
+	    <!-- 
 	    <if test="sortName != null and sortName != '' and sort != null and sort != ''">
 	    order by ${sortName} ${sort}
 	    </if>
 	    <if test="isPaging=='true'">
 		OFFSET ((${page}+1)-1)*${size} ROW 
 		FETCH NEXT ${size} ROW ONLY
-		</if>  
+		</if>
+		 -->  
     </sql>
     <sql id="totalPages">
 	    <!-- common.totalPages -->
+	    <!-- 
 	    <if test="isPaging=='true'">
 	    count(*) OVER() AS totalCnt,
 	    </if>
+	     -->
     </sql>
 </mapper> 

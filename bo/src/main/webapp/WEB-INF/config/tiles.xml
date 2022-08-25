@@ -37,6 +37,9 @@
    <definition name="/common/*" extends="common-layout">
        <put-attribute name="body" value="/WEB-INF/views/common/{1}.jsp" />
    </definition>
+   <definition name="/common/*/*" extends="common-layout">
+       <put-attribute name="body" value="/WEB-INF/views/common/{1}/{2}.jsp" />
+   </definition>
    <definition name="/error/*" extends="common-layout">
        <put-attribute name="body" value="/WEB-INF/views/error/{1}.jsp" />
    </definition>

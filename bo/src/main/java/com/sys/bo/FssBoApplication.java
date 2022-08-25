@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @EnableCaching()
 @SpringBootApplication
-@MapperScan(value = {"com.sys.bo.*.*.repository", "com.sys.bo.*.repository"})
+@MapperScan(value = {"com.sys.bo.*.*.mapper", "com.sys.bo.*.mapper"})
 public class FssBoApplication {
 
 	public static void main(String[] args) {
